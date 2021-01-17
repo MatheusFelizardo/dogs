@@ -3,11 +3,13 @@
 }
 
 body {
+  box-shadow: 0 0px 20px -8px rgba(0, 0, 0, 0.8);
   padding-top: 4rem;
   margin: 0 auto;
   color: #333;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   max-width: 50rem;
+  height: 100vh;
 }
 
 h1,

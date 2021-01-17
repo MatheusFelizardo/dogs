@@ -10,7 +10,7 @@ const LoginInput = styled.input`
   padding: 0.8rem;
   border: none;
   border-radius: 0.4rem;
-  min-width: 85%;
+  min-width: 100%;
   &:focus,
   &:hover {
     outline: none;

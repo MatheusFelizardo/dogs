@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Dogs } from "../Assets/dogs.svg";
 import loginImg from "../Assets/usuario.svg";
 import styled from "styled-components";
+import { UserContext } from "../UserContext";
+import Button from "./Forms/Button";
 
 const PageHeaderContainer = styled.div`
+  max-width: 50rem;
   width: 100%;
   position: fixed;
   z-index: 100;
@@ -34,16 +37,44 @@ const HeaderLink = styled(Link)`
   }
 `;
 
+const UserOptionsWrapper = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
+`;
+
+const LogoutButton = styled(Button)`
+  background: #f24f50;
+  padding: 0.1rem 1rem;
+  color: #fff;
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 4px 3px #f24f50;
+  }
+`;
+
 const Header = () => {
+  const { data, login, userLogout } = React.useContext(UserContext);
+
   return (
     <PageHeaderContainer>
       <HeaderContainer>
         <Link to="/" aria-label="Dogs - Home">
           <Dogs />
         </Link>
-        <HeaderLink className="Header_Login" to="/login">
-          Login / Criar conta
-        </HeaderLink>
+        {data ? (
+          <UserOptionsWrapper>
+            <HeaderLink className="Header_Login" to="/conta">
+              {data.nome}
+            </HeaderLink>
+            {login && <LogoutButton onClick={userLogout}>Sair</LogoutButton>}
+          </UserOptionsWrapper>
+        ) : (
+          <HeaderLink className="Header_Login" to="/login">
+            Login / Criar conta
+          </HeaderLink>
+        )}
       </HeaderContainer>
     </PageHeaderContainer>
   );
